@@ -5,17 +5,230 @@
 	<title>ES6 +</title>
 	<!-- CÓDIGOS MOSTRADOS NAS AULAS DE ECMA SCRIPT 6 E ANOTAÇÕES
 
-	- Métodos auxiliares para arrays
-	- For...of
-	- Let e const (var)
-	- Arrow functions
-	- Templates literais
-	- Desestruturamento de objetos e arrays
+	- Métodos auxiliares para arrays: Facilita o uso de arrays, deixa mais claro que se quer fazer logo na iteração e não mais no corpo do for;
+	
+	- For...of: Iteração em todos os itens do array, parecido com o forEach;
+	
+	- Let e const (var): Não é mais aconselhável utilizar var, para isso temos o let e o const atualmente. Importante observar o escopo, existem dois tipos, escopo de bloco e escopo de função; O let é como se fosse o var, porém obedece o escopo de bloco, o var obedece o escopo de função e o const é uma constante.
 
+	- Arrow functions: É uma notação diferente para escrever funções; A arrow function trabalha com o contexto delimitador, ao se usar essa notação, ele consegue acessar o valor de todo o escopo (verificar exemplo com e sem o self). Utilizado em funções anônimas e com contextos delimitadores;
 
+	- Templates literais: Utilizado pra trabalhar com strings de forma mais inteligente (parecido com o blade do Laravelb). Importante: Em vez de aspas utiliza-se crase;
+
+	- Desestruturamento de objetos e arrays: Jeito mais fácil de obter atributos de um objeto, para atributos que não existem, é atribuído o valor undefined.
+
+	- Classes: Estrutura comum de orientação a objetos.
+		- Palavras reservadas: class, extends, constructor, super (refere-se a classe pai), static (seta métodos que podem ser utilizados sem instanciar um objeto);
+	
+	- Promises
+	-
+
+	Anotações e dúvidas:
+		- Ler mais sobre a "sintaxe de açúcar (sintax suggar)";
 	-->
 </head>
 <body>
-	
+	<script>
+		console.log("==== Testando métodos auxiliares para arrays =======");
+		var meuArray = [1,2,3,4,5,6,7,8,9,0];
+
+		//código clássico para percorrer arrays
+		for( var i = 0; i < meuArray.length; i++){
+			console.log("item"+i+"= "+meuArray[i]);
+		}
+		//mostrar todos os itens
+		meuArray.forEach(function(item){
+			console.log(item);
+		});
+		//alterar todos os itens
+		var b = meuArray.map(function(item){
+			return item*0.2;
+		});
+		console.log(b);
+		//filtrando elementos
+		c = meuArray.filter(function(item){
+			return item > 5;
+		});
+		console.log(c);
+		//encontrar um item específico (retorna apenas um )
+		d = meuArray.find(function(item){
+			return item = 5;
+		});
+		console.log(d);
+		//verificar se todos obedecem a um critério (return true ou falso )
+		e = meuArray.every(function(item){
+			return item < 11;
+		});
+		console.log(e);
+		//verificar se algum item obedece a um critério (return true ou falso )
+		f = meuArray.some(function(item){
+			return item > 11;
+		});
+		console.log(f);
+
+
+		console.log("=== Testando for of ====");
+		var minhaLista = [
+			{nome: "Hugo", idade: 28},
+			{nome: "Boss", idade: 29},
+			{nome: "Yo", idade: 30}
+		];
+
+		for(var pessoa of minhaLista){
+			console.log(pessoa);
+		}
+
+		console.log("=== Testando let e const ====");
+		var teste = "a";
+		let teste2 = 2;
+		const teste3 = "constante";
+		{
+			let teste = "b";
+			let teste2 = 3;
+			console.log(teste);
+			console.log(teste2);
+			const teste3 = "constantenova";
+			console.log(teste3);
+		}
+		console.log(teste);
+		console.log(teste2);
+		//teste3 = "constante2";
+		console.log(teste3);
+
+		console.log("=== Testando arrow functions ====");
+		//Escrvendo função comum
+		let soma = function(a,b){
+			return a + b;
+		}
+		//Escrevendo utilizando arrow function
+		let soma2 = (a,b) => a+b;
+		let soma3 = (a,b,c) => {
+			return a + b + c; 
+		}
+
+		console.log(soma(2,3));
+		console.log(soma2(5,2));
+		console.log(soma3(5,2,3));
+		//exemplo da aula
+		//sem arrow function
+		{
+			const time = {
+				nome: "Galo doido",
+				integrantes : ["Elias ameba","Fabio merda", "Patrick monstro"],
+				mostrarIntegrantes: function(){
+					var self = this;
+					this.integrantes.forEach(function(integrante) {
+						console.log(integrante + " é membro do time "+ self.nome)
+					})
+				}
+			}
+			time.mostrarIntegrantes();
+		}
+
+
+		//com arrow function
+		{
+			const time = {
+				nome: "Galo doido",
+				integrantes : ["Elias ameba","Fabio merda", "Patrick monstro"],
+				mostrarIntegrantes: function(){
+					this.integrantes.forEach((integrante) => {
+						console.log(integrante + " é membro do time "+ this.nome)
+					})
+				}
+			}
+		time.mostrarIntegrantes();
+		}
+
+	console.log("=== Testando templates literais ====");
+	{
+			const time = {
+				nome: "Galo doido",
+				integrantes : ["Elias ameba","Fabio merda", "Patrick monstro"],
+				mostrarIntegrantes: function(){
+					this.integrantes.forEach((integrante) => {
+						// console.log(integrante + " é membro do time "+ this.nome);
+						console.log(`${integrante} é membro do time ${this.nome}`)
+					})
+				}
+			}
+		time.mostrarIntegrantes();
+		}
+
+	console.log("=== Desestruturação ====");
+	var livro = {
+		titulo: "ECMAScript 6",
+		autor: "Hugo",
+		editora: "Casa do Código",
+		ISBN: "12017289"
+	}
+
+	//jeito antigo
+	let titulo = livro.titulo;
+	let autor = livro.autor;
+
+	console.log(`O livro tem o título ${titulo} e o autor é ${autor}`);
+
+	//jeito novo
+	{
+		let {titulo, autor} = livro;
+		console.log(`O livro tem o título ${titulo} e o autor é ${autor}`);
+	}
+
+
+	console.log("=== Testando Classes ====");
+	{
+		class Cachorro{
+			constructor(nome, raca){
+				this.nome = nome;
+				this.raca = raca;
+			}
+
+			mostrarNome(){
+				console.log(this.nome);
+			}
+
+			mostrarRaca(){
+				console.log(this.raca);
+			}
+		}
+
+		class MeuCachorro extends Cachorro{
+			constructor(nome, raca, apelido){
+				super(nome, raca);//construtor da classe cachorro
+				this.apelido = apelido;
+			}
+
+			mostrarApelido(){
+				console.log(this.apelido);
+			}
+
+			latir(){
+				console.log("au au");
+			}
+		}
+
+		class MeuGato extends MeuCachorro{
+			constructor(nome, raca, apelido){
+				super(nome,raca,apelido);
+			}
+			miar(){
+				console.log("miau");
+			}
+		}
+
+		const biju = new MeuCachorro('bijou','pinscher','bibizinha');
+
+		biju.mostrarApelido();
+		biju.mostrarNome();
+		biju.mostrarRaca();
+
+		const ronaldo = new MeuGato('ronado','vira-lata','ronaldera');
+
+		ronaldo.miar();
+	}
+
+
+	</script>
 </body>
 </html>
