@@ -2,66 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Aulas Flexbox</title>
-	<!-- Códigos mostrados nas videoaulas de Flexbox e anotações
-	-> justify-content: atua no eixo principal
-	-> align-items: atua no eixo secundário
-	-> flex-grow é a capacidade de crecer o elemento;
-	-> flex-shrink é o contrário do flex-grow, é a capacidade de encolher o elemento;
-	-> a propriedade flex é um resumo de três propriedades:
-	flex: 2 1 300px; (a primeira propriedade é o grow, a segunda o shrink e a terceira o basis)
-	-> flex-wrap: usada em conjunto com as propriedades acima;
-	-> as propriedades do flexbox atuam de acordo com a proporção entre os elementos, não com base em valores absolutos.
-
-	**Dúvidas:
-	- Qual a compatibilidade do flexbox?
-	- O flexbox começou a ser utilizado no grid do bootstrap a partir de quando?
-	- Flex-wrap, flex-shrink, flex-grow, flex - estas proprieadades não ficaram bem claras para mim, preciso de uma revisão...
-	- Curiosidade, tem como usar o enmet para escrever CSS?
-	- Poderíamos fazer uma implementação de um grid responsivo como exemplo?
-
-	 -->
-	<style>
-		.container{
-			border:2px solid black;
-			/*height: 500px;*/
-			width: 500px;
-			display: flex;
-			flex-direction: row; /* column, row-reverse, column-reverse */
-			justify-content: flex-start; /*flex-start, flex-end, space-betweem. space-around */
-			align-items:  flex-start; /* flex-start, flex-end, center, stretch, baseline */
-			flex-wrap: wrap;
-		}
-		.container > div{
-			background-color: #f1f1f1;
-			margin: 10px;
-			text-align: center;
-			line-height: 75px;
-			font-size: 30px;
-			/*flex-grow: 1;*/ /*Default: 0*/
-			/*flex-shrink: 1;*/
-		}
-		.container > div#bl1{
-			/*align-self: stretch;*/ /*defaut: 0*/
-			/*flex-grow: 3;*/
-			flex: 1 1 100px;
-		}
-		.container > div#bl2{
-			/*align-self: stretch; *//*defaut: 0*/
-			/*flex-grow: 2;*/
-			/*flex-shrink: 4;*/
-			flex: 1 1 100px;
-		}
-		.container > div#bl3{
-			flex: 1 1 200px;
-		}
-	</style>
+	<title>Index</title>
 </head>
 <body>
-	<div class="container">
-		<div id="bl1">Bloco 1</div>
-		<div id="bl2">Bloco 2</div>
-		<div id="bl3">Bloco 3</div>
-	</div>
+	<ul>
+		<li><a href="flexbox.html">Aulas Flexbox</a></li>
+		<li><a href="air-bnb-api/index.html">Air BNB Api</a></li>
+		<li><a href="javascript.html">Aulas Javascript Básico</a></li>
+		<li><a href="es6.html">Notação atual do JS: ES6+</a></li>
+	</ul>
 </body>
 </html>

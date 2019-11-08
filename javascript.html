@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Aulas Javascript Básico</title>
+	<!-- CÓDIGOS MOSTRADOS NAS AULAS DE JAVASCRIPT E ANOTAÇÕES
+
+	- Linguagem fracamente tipada, a função typeof indica qual o tipo da variável em tempo de execução;
+	- Palavras chave: 
+		- var (para declarar variáveis);
+		- function/return (para declarar funções e retornar);
+		- if/else (condicionais);
+		- switch (condicional com várias opções);
+		- for (loop - executa de acordo com as condições);
+		- do..while (executa primeiro, depois olha a condição);
+		- break/continue (usa-se dentro do loop, para parar ou continuar a execução);
+		- try...catch (tratamento de exeção);
+	
+	- Funções 
+		- Existem dois tipos de função, as nomeadas e as anônimas, a nomeada possui um nome e utiliza-se o nome dela para invocar a função, na função anônima, armazena-se em uma variável.
+
+		- Tudo no javascript é um objeto;
+
+		- Função construtora:
+
+
+	-->
+</head>
+<body>
+	
+
+<script type="text/javascript">
+	console.log("==== Testando typeof ========");
+	console.log(typeof "teste");
+	console.log(typeof 10.2);
+	console.log(typeof 10);
+	console.log(typeof true);
+	console.log(typeof null);
+
+	console.log("====== Testando funções =======");
+	//Função nomeada
+	function hello(){
+		console.log("Hello");
+	}
+	//Funçao anônima
+	var a = function(){
+		console.log("Hello");
+	}
+
+	a();
+	hello();
+
+	console.log("====== Testando objetos =======");
+	var pessoa = {
+		nome: "João",
+		idade: 12,
+		mostrarNome: function(){
+			console.log("Meu nome é "+ this.nome);
+		}
+	}
+
+	console.log(pessoa.mostrarNome());
+
+	console.log("====== Testando função construtora =======");
+
+	function Pessoa(nome, idade){
+		this.nome = nome;
+		this.idade = idade;
+	}
+
+	Pessoa.prototype.mostrarNome = function(){
+		console.log("Meu nome é "+this.nome);
+	}
+	// var a = Pessoa("hugo",28)
+	// console.log(a.mostrarNome());
+
+</script>
+</body>
+</html>
