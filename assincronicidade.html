@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Aula de assincronicidade com JS</title>
+	<!-- CÓDIGOS E ANOTAÇÕES DAS AULAS SOBRE ASSINCRONICIDADE DE JS
+
+	Basicamente execução concorrente, várias coisas podem ser executadas ao mesmo tempo sem uma depender da outra;
+
+	- Tópicos importantes: setTimeout(), setInterval(), Ajax, eventos do DOM(click);
+
+	- Callbacks: Funções que são executadas após o término do fluxo; Callback hell e código haduken dificultam o debug, o código fica confuso e tem alto acoplamento, aí que entram as Promises...
+
+	- Promises: Objeto especial que armazena a promessa de que a função que a gerou vai, em algum momento, devolver uma reposta.
+		- Estados: Não resolvido(estado inicial), resolvido(then) e rejeitado(catch);
+		- Existe também a Promise Hell, aí que entram o async/await;
+
+	- Async/Await: O async é a marcação para uma função assíncrona e o await é utilizado em conjunto (ainda tenho um pouco de dúvidas nisso, ler mais sobre, mas acho que serve mais como uma marcação apenas para deixar o código mais didático, o professor mencionou que é uma forma de deixar o código assíncrono mais síncrono, não entendi...);
+
+
+	-->
+</head>
+<body>
+	<p>Abra o console!</p>
+	<script>
+		console.log("===== Testando Callback ====");
+		const nome = "Hugo";
+		primeiroCumprimento(nome, segundoCumprimento);
+		// segundoCumprimento(nome);
+
+		function primeiroCumprimento(nome,callback){
+			setTimeout(()=>{
+				console.log(`Olá, ${nome}`);
+				callback(nome);
+			},2000);
+		}
+
+		function segundoCumprimento(nome){
+			console.log(`Você está bem, ${nome} ?`);
+		}
+
+		console.log("===== Testando Promises ====");
+
+		let promise = new Promise((resolve,reject)=>{
+			let resultado = true;
+			let tempo = 2000;
+			setTimeout(()=>{
+				if(resultado) resolve('deu certo!');
+				else reject('deu erro!');
+			},tempo)
+		});
+
+		promise.then(data => console.log(data)); //deu certo;
+
+		promise.catch(data=> console.log(data)); //deu erro
+
+		console.log('fui executado antes de todo mundo!');
+
+		setTimeout(()=>{
+
+			console.log("código do exemplo");
+
+			{
+				function primeiroCumprimento(nome){
+					return new Promise((resolve,reject) => {
+						setTimeout(()=>{
+							console.log(`Olá, ${nome}`);
+							resolve(nome);
+						},2000);
+					})
+				}
+
+				function segundoCumprimento(nome){
+					console.log(`Você está bem, ${nome} ?`);
+				}
+
+				primeiroCumprimento("Hugo").then(nome => segundoCumprimento(nome)).catch(err => console.err('deu ruim',err))
+			}
+		},5000);
+
+
+		setTimeout(()=>{
+			function resolveDepoisde10Segundos(valor){
+				return new Promise((resolve,reject) => {
+					setTimeout(() => {
+						resolve(valor);
+					},1000);
+				});
+			}
+
+			async function f1(){
+				var x = await resolveDepoisde10Segundos(10);
+				console.log(x);
+			}
+
+			f1();
+
+		},10000);
+
+	</script>
+</body>
+</html>
