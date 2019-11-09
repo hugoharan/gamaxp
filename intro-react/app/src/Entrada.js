@@ -5,7 +5,7 @@ class Entrada extends Component {
 
 		return(
 			<div>
-				<label for="user"> Usuário</label>
+				<label htmlFor="user"> Usuário</label>
 				<input type="text" name="user" value={this.props.valor} onChange={this.props.onInputChange} />
 				<button onClick={this.props.onButtonClick}>Procurar</button>
 

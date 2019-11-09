@@ -4,10 +4,16 @@ import './App.css';
 import Entrada from './Entrada';
 import Usuario from './Usuario';
 
-class App extends Component() {
+
+class App extends Component {
 state = {
   usuario: '',
-  info: null,
+  info: {
+    avatar_url: null,
+    user: null,
+    name: null,
+    blog: null
+  },
   erro: false,
   loading: false
 }
@@ -21,15 +27,17 @@ onInputChange = (event) =>{
 onButtonClick = () =>{
   this.setState({loading:true});
   const {usuario} = this.state;
-
+  debugger;
   fetch(`https://api.github.com/users/${usuario}`)
   .then(data => data.json())
   .then(info =>{
-    this.setState({info, loading:true})
+    debugger;
+    this.setState({info, loading:false})
   })
   .catch(erro => {
     this.setState({
-      erro:true
+      erro:true,
+      loading:false
     })
   })
 }
@@ -41,7 +49,7 @@ buildBlocoUsuario = () => {
   return <div>...</div>
 }
 
-render(){
+render () {
   const blocoUsuario = this.buildBlocoUsuario();
 
     return (
@@ -50,9 +58,8 @@ render(){
           valor={this.props.usuario}
           onInputChange ={this.onInputChange}
           onButtonClick = {this.onButtonClick}
-           />
-          }
-        {blocoUsuario}
+         />
+        <Usuario info={this.state.info} loading={this.state.loading} />
       </div>
     );
 }
