@@ -14,6 +14,9 @@ state = {
   autor: ''
 }
 
+componentDidMount= () =>{
+  this.onButtonClick();
+}
 
 onButtonClick = () =>{
   let item = json[Math.floor(Math.random()*json.length)];
