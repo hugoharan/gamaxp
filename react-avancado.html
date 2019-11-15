@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>React no mundo real</title>
+	<!-- CÓDIGOS E ANOTAÇÕES DAS AULAS DE REACT NO MUNDO REAL
+
+	Inserindo estilos no react:
+	 - Criando o arquivo css e importando.
+	 - Inserindo estilos inline: Importante observar que os estilos são inseridos em padrão CamelCase sem os tracinhos convencionais e o conteúdo da propriedade é sempre em string.
+
+		 - Exemplo (melhor forma de se fazer):
+		 const divStyle = {
+			margin: '40px',
+			border: '5px solid pink'
+		 };
+
+		 const pStyle ={
+			fontSize: '15px',
+			textAlign: 'center'
+		 };
+
+		 const Box = () => {
+		<div style={divStyle}>
+			<p style={pStyle}> ... </p>
+		</div>
+		 }
+
+		 export default Box;
+
+		 - Outro exemplo (má prática):
+			const Box = () => {
+				<div style={{margin:'40px',border:'5px solid pink'}}>
+					<p style={pStyle}> ... </p>
+				</div>
+		 }
+	 - CSS Modues: é um arquivo CSS no qua todos os nomes de classes e nomes de animação são definidos localmente por padrão.
+
+	 	- Exemplo:
+	 	{ ... }
+		//arquivo .css
+	 	:local(.container){
+			margin: 40px;
+			border: 5px dashed pink;
+	 	}
+
+	 	:local(.content){
+			font-size: 15px;
+			text-align: center;
+	 	}
+		
+		//arquivo .js
+		import styles from nome_do_arquivo_css
+
+		const DashedBox = () => {
+			<div className = {styles.container}>
+				<p className = {styles.content}> ... </p>
+			</div>
+		};
+
+		export default DashedBox;
+
+	 - Styled Components: é uma biblioteca para React que nos permite usar estilos de nível de componente em sua aplicação que são escritos com uma mistura de Javascript e CSS.
+
+	 	- Exemplo: 
+		import styled from 'styled-components';
+	 	const Div = styled.div`
+	 		margin:40px;
+	 		border: 5px outset pink;
+	 		&:hover{
+				background-color: yellow;
+	 		}
+	 		`;
+	 	const Paragraph = styled.p`
+	 		font-size:15px;
+	 		text-align:center;
+	 	`;
+
+	 	const OusetBox = () => (
+			<Div>
+				<Paragraph>...</Paragraph>
+			</Div>
+	 	);
+		export default OutsetBox;
+
+	Qual a melhor forma para utilizar? Depende ¬¬
+	 -->
+</head>
+<body>
+	
+</body>
+</html>
