@@ -1,0 +1,19 @@
+
+      .App .navbar .navbar-default{
+        background-color: black;
+      }
+      .App .Upcoming{
+        display: flex;
+      }
+      .App .card{
+        color: #000;
+      }
+      .App .card h1, .card h2{
+        font-size: 1em;
+      }
+      .App .card .info{
+        position: absolute;
+    display: block;
+    width: 400px;
+    bottom: 0px;
+      }
